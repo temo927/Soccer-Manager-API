@@ -24,18 +24,13 @@ The project follows **Hexagonal Architecture (Ports & Adapters)** pattern:
 
 ## Prerequisites
 
-- Go 1.25 or higher
-- PostgreSQL 15+
-- Redis 7+
-- Docker and Docker Compose (optional)
+- Docker and Docker Compose
 
 ## Setup
 
-### Using Docker Compose (Recommended)
-
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/temo927/Soccer-Manager-API.git
 cd Soccer-Manager-API
 ```
 
@@ -44,35 +39,46 @@ cd Soccer-Manager-API
 cp .env.example .env
 ```
 
-3. Start services:
+3. Start all services (PostgreSQL, Redis, and API):
 ```bash
 cd docker
-docker-compose up -d
+docker compose up -d
 ```
 
 4. The API will be available at `http://localhost:8080`
 
-### Manual Setup
+### Stopping Services
 
-1. Install dependencies:
+To stop all services:
 ```bash
-go mod download
+cd docker
+docker compose down
 ```
 
-2. Set up PostgreSQL database:
+To stop and remove volumes (clears database):
 ```bash
-createdb soccer_manager
+cd docker
+docker compose down -v
 ```
 
-3. Run migrations (manually execute SQL files from `internal/infrastructure/persistence/migrations/`)
+### Viewing Logs
 
-4. Set environment variables (see `.env.example`)
-
-5. Start Redis server
-
-6. Run the application:
+View API logs:
 ```bash
-go run cmd/api/main.go
+cd docker
+docker compose logs api
+```
+
+View all logs:
+```bash
+cd docker
+docker compose logs
+```
+
+Follow logs in real-time:
+```bash
+cd docker
+docker compose logs -f api
 ```
 
 ## API Endpoints
