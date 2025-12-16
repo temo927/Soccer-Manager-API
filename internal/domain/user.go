@@ -1,0 +1,27 @@
+package domain
+
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
+
+
+type User struct {
+	ID           uuid.UUID `json:"id" db:"id"`
+	Email        string    `json:"email" db:"email"`
+	PasswordHash string    `json:"-" db:"password_hash"`
+	CreatedAt    time.Time `json:"created_at" db:"created_at"`
+	UpdatedAt    time.Time `json:"updated_at" db:"updated_at"`
+}
+
+
+func NewUser(email, passwordHash string) *User {
+	return &User{
+		ID:           uuid.New(),
+		Email:        email,
+		PasswordHash: passwordHash,
+		CreatedAt:    time.Now(),
+		UpdatedAt:    time.Now(),
+	}
+}

@@ -1,0 +1,14 @@
+.git
+.gitignore
+.env
+.env.local
+*.md
+tests/
+api/postman/
+.vscode/
+.idea/
+*.log
+*.swp
+*.swo
+*~
+
